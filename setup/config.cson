@@ -1,0 +1,27 @@
+"*":
+  "atom-material-ui":
+    tabs:
+      compactTabs: true
+  core:
+    telemetryConsent: "limited"
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax-dark"
+    ]
+  editor:
+    fontFamily: "Inconsolata, Menlo, Consolas, DejaVu Sans Mono, monospace"
+    fontSize: 16
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "77041645-0a61-467a-90cc-338d2166b0e4"
+  "platformio-ide-terminal":
+    style:
+      fontFamily: "inconsolata"
+      fontSize: "14"
+      theme: "pro"
+    toggles:
+      autoClose: true
+      runInsertedText: false
+  "status-bar": {}
+  welcome:
+    showOnStartup: false

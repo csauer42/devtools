@@ -1,2 +1,2 @@
 # devtools
-Scripts, configs, etc for machine setup, project templates
+Scripts and configs for machine setup, project templates, etc

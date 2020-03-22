@@ -1,0 +1,59 @@
+# Template for AVR development
+
+cmake_minimum_required(VERSION 3.10)
+project("AVR_env")
+
+set(F_CPU 8000000UL)
+set(MCU atmega328p)
+set(BAUD 38400)
+set(PROG_TYPE avrispmkII)
+
+set(L_FUSE 0xE2)
+set(H_FUSE 0xD9)
+set(E_FUSE 0xFF)
+
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_CXX_COMPILER avr-g++)
+set(CMAKE_C_COMPILER avr-gcc)
+set(CMAKE_ASM_COMPILER avr-gcc)
+
+add_definitions(
+    -DF_CPU=${F_CPU}
+    -DBAUD=${BAUD}
+)
+
+set(CMAKE_EXE_LINKER_FLAGS -mmcu=${MCU})
+
+add_compile_options(
+    -mmcu=${MCU}
+    -std=c99
+    -Os
+    -Wall
+    -pedantic
+    -Wstrict-prototypes
+    -Werror
+    -funsigned-char
+    -funsigned-bitfields
+    -fpack-struct
+    -fshort-enums
+    -ffunction-sections
+    -fdata-sections
+    -fno-split-wide-types
+)
+
+include_directories("include")
+file(GLOB SRC_FILES "src/*.c")
+
+add_executable(main ${SRC_FILES})
+
+set_target_properties(main PROPERTIES OUTPUT_NAME main.elf)
+
+add_custom_target(strip ALL avr-strip main.elf DEPENDS main)
+add_custom_target(hex ALL avr-objcopy -R .eeprom -O ihex main.elf main.hex DEPENDS strip)
+add_custom_target(flash avrdude -c ${PROG_TYPE} -p ${MCU} -U flash:w:main.hex DEPENDS hex)
+add_custom_target(fuses avrdude -c ${PROG_TYPE} -p ${MCU} -U lfuse:w:${L_FUSE}:m
+                                                          -U hfuse:w:${H_FUSE}:m
+                                                          -U efuse:w:${E_FUSE}:m)
+add_custom_target(check_fuses avrdude -c ${PROG_TYPE} -p ${MCU} -n)
+
+set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES main.hex)
