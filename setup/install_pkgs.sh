@@ -2,8 +2,12 @@
 
 # add additional repositories
 
+# make sure we're up to date
+sudo apt update
+sudo apt upgrade
+
 # docker
-sudo apt-get install \
+sudo apt install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -39,11 +43,46 @@ sudo apt install \
     containerd.io \
     atom \
     virtualbox \
+    virtualbox-ext-pack \
     ack \
     build-essential \
     cmake \
+    diffstat \
+    fonts-inconsolata \
+    geany \
+    hexdiff \
+    htop \
+    minicom \
+    net-tools \
+    nmap \
+    pulseview \
+    sigrok \
+    taskwarrior \
     tilix \
-    virtualenv
+    virtualenv \
+    vlc \
+    wireshark \
+    xinetd
+
+# get docker-compose
+DC_VER="1.25.4"
+sudo curl -L \
+ "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" \
+ -o /usr/local/bin/docker-compose
+sudo chmod 755 /usr/local/bin/docker-compose
+
+
+# fix tilix vte issue
+if [ ! -f /etc/profile.d/vte.sh ]; then
+    if [ -f /etc/profile.d/vte-2.91.sh ]; then
+        ln -sf /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+    fi
+fi
+
+# add user to additional groups
+sudo usermod -aG docker $USER
+sudo usermod -aG dialout $USER
+sudo usermod -aG wireshark $USER
 
 # copy config, update atom packages, install extras
 if [ ! -d ~/.atom ]; then

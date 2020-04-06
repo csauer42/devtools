@@ -10,7 +10,9 @@ sudo apt install \
     vim-fugitive \
     vim-runtime \
     vim-syntastic \
-    vim-tiny
+    vim-tiny \
+    cppcheck \
+    python3-flake8
 
 if [ -f vimrc ]; then
     cp vimrc ~/.vimrc
