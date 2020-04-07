@@ -1,0 +1,16 @@
+Additional Steps for Setup:
+
+(for dual boot) Set linux rtc time to local time:
+sudo timedatectl set-local-rtc 0 --adjust-system-clock
+
+Set clock to AM/PM from 24-hr
+
+(Ubuntu)
+Enable Canonical Partner Repo
+Fix dock (bottom/hide/both monitors)
+
+Fix power settings to prevent sleep
+
+Install vpn/update hosts
+
+Configure minicom

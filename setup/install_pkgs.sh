@@ -75,9 +75,11 @@ sudo chmod 755 /usr/local/bin/docker-compose
 # fix tilix vte issue
 if [ ! -f /etc/profile.d/vte.sh ]; then
     if [ -f /etc/profile.d/vte-2.91.sh ]; then
-        ln -sf /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+        sudo ln -sf /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
     fi
 fi
+
+echo -ne 'if [ $TILIX_ID ] || [ $VTE_VERSION ]; then\n    source /etc/profile.d/vte.sh\nfi\n' >> ~/.bashrc
 
 # add user to additional groups
 sudo usermod -aG docker $USER
