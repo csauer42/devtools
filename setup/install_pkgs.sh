@@ -54,6 +54,7 @@ sudo apt install \
     htop \
     minicom \
     net-tools \
+    nfs-server \
     nmap \
     pulseview \
     sigrok \
@@ -80,6 +81,11 @@ if [ ! -f /etc/profile.d/vte.sh ]; then
 fi
 
 echo -ne 'if [ $TILIX_ID ] || [ $VTE_VERSION ]; then\n    source /etc/profile.d/vte.sh\nfi\n' >> ~/.bashrc
+
+# configure tilix
+if [ -f tilix.conf ]; then
+    dconf load /com/gexperts/Tilix/ < tilix.conf
+fi
 
 # add user to additional groups
 sudo usermod -aG docker $USER
