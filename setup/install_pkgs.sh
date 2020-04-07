@@ -49,15 +49,13 @@ sudo apt install \
     cmake \
     diffstat \
     fonts-inconsolata \
+    fonts-ricty-diminished \
     geany \
-    hexdiff \
     htop \
     minicom \
     net-tools \
     nfs-server \
     nmap \
-    pulseview \
-    sigrok \
     taskwarrior \
     tilix \
     virtualenv \
