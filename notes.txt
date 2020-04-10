@@ -1,9 +1,7 @@
 Additional Steps for Setup:
 
-(for dual boot) Set linux rtc time to local time:
-sudo timedatectl set-local-rtc 0 --adjust-system-clock
-
-Set clock to AM/PM from 24-hr
+(for dual boot w/ Windows)
+Add RealTimeIsUniversal (DWORD32) to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation in WinReg
 
 (Ubuntu)
 Enable Canonical Partner Repo

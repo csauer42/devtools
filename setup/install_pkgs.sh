@@ -85,6 +85,9 @@ if [ -f tilix.conf ]; then
     dconf load /com/gexperts/Tilix/ < tilix.conf
 fi
 
+# fix terminal prompt
+sed -i 's/\(^    PS1.*\\\)w/\1W/' ~/.bashrc
+
 # add user to additional groups
 sudo usermod -aG docker $USER
 sudo usermod -aG dialout $USER
