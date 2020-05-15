@@ -14,11 +14,11 @@ sudo apt install \
     gnupg-agent \
     software-properties-common
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#sudo add-apt-repository \
+#   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+#   $(lsb_release -cs) \
+#   stable"
 
 # atom
 wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
@@ -28,19 +28,17 @@ sudo add-apt-repository \
     main"
 
 # virtualbox
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-sudo add-apt-repository \
-    "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian \
-    $(lsb_release -cs) \
-    contrib"
+#wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+#sudo add-apt-repository \
+#    "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian \
+#    $(lsb_release -cs) \
+#    contrib"
 
 # update and install from new repos plus additional standard packages
 sudo apt update
 
 sudo apt install \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
+    docker-compose \
     atom \
     virtualbox \
     virtualbox-ext-pack \
@@ -51,6 +49,7 @@ sudo apt install \
     fonts-inconsolata \
     fonts-ricty-diminished \
     geany \
+    glances \
     htop \
     minicom \
     net-tools \
@@ -64,11 +63,11 @@ sudo apt install \
     xinetd
 
 # get docker-compose
-DC_VER="1.25.4"
-sudo curl -L \
- "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" \
- -o /usr/local/bin/docker-compose
-sudo chmod 755 /usr/local/bin/docker-compose
+#DC_VER="1.25.4"
+#sudo curl -L \
+# "https://github.com/docker/compose/releases/download/$DC_VER/docker-compose-$(uname -s)-$(uname -m)" \
+# -o /usr/local/bin/docker-compose
+#sudo chmod 755 /usr/local/bin/docker-compose
 
 
 # fix tilix vte issue
